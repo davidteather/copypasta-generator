@@ -136,8 +136,10 @@ def generate_text(model, start_string):
 
   return (start_string + ''.join(text_generated))
 
-gen_text = generate_text(model, start_string=u"Somebody once told me: ")
-gen_text = gen_text.replace('Somebody once told me:', "")
-
-print(gen_text)
-reddit.subreddit("copypasta").submit("Somebody once told me", selftext=gen_text)
+def post_pasta(starting_phrase):
+    try:
+        gen_text = generate_text(model, start_string=starting_phrase)
+        print(gen_text)
+        reddit.subreddit("copypasta").submit(starting_phrase, selftext=gen_text)
+    except OSError:
+        print("Pasta Failed :(")
