@@ -4,6 +4,6 @@
     "path_to_file": "data.txt",
     "BATCH_SIZE": 128,
     "BUFFER_SIZE": 10000,
-    "seq_length": 100,
-    "EPOCHS": 800
+    "seq_length": 200,
+    "EPOCHS": 250
 }
