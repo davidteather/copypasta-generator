@@ -91,7 +91,20 @@ def build_model(vocab_size, embedding_dim, rnn_units, batch_size):
   ])
   return model
 
-model = build_model(
+
+checkpoint_dir = './training_checkpoints'
+# Loads weight
+try:
+  tf.train.latest_checkpoint(checkpoint_dir)
+
+  model = build_model(vocab_size, embedding_dim, rnn_units, batch_size=BATCH_SIZE)
+
+  model.load_weights(tf.train.latest_checkpoint(checkpoint_dir))
+
+  model.build(tf.TensorShape([1, None]))
+
+except:
+  model = build_model(
     vocab_size = len(vocab),
     embedding_dim=embedding_dim,
     rnn_units=rnn_units,

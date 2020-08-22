@@ -11,16 +11,19 @@ starting_phrase = ['Somebody once told me', 'My parents disowned me, because',
 while True:
     try:
         post_pasta(random.choice(starting_phrase))
+        time.sleep(5)
     except praw.exceptions.RedditAPIException as e:
         try:
             if "minutes" in e.items[0].message.split("try again in ")[1]:
                 multiplier = 60
+                time_delay = e.items[0].message.split("try again in ")[1].split(" minutes.")[0]
                 phrase = "minutes"
             else:
                 multiplier = 1
                 phrase = "seconds"
+                time_delay = e.items[0].message.split("try again in ")[1].split(" seconds.")[0]
             
-            time_delay = e.items[0].message.split("try again in ")[1].split(" minutes.")[0]
+            
             print("sleeping {} {}".format(time_delay, phrase))
             time.sleep(int(time_delay)*multiplier)
         except Exception as e:

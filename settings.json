@@ -5,5 +5,5 @@
     "BATCH_SIZE": 128,
     "BUFFER_SIZE": 10000,
     "seq_length": 100,
-    "EPOCHS": 250
+    "EPOCHS": 600
 }

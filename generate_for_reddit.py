@@ -139,7 +139,9 @@ def generate_text(model, start_string):
 def post_pasta(starting_phrase):
     try:
         gen_text = generate_text(model, start_string=starting_phrase)
-        print(gen_text)
+        gen_text = gen_text.replace(starting_phrase, "")
         reddit.subreddit("copypasta").submit(starting_phrase, selftext=gen_text)
+        print("pasta posted :)")
+
     except OSError:
         print("Pasta Failed :(")
